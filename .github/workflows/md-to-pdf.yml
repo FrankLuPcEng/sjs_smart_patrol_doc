@@ -25,11 +25,16 @@ jobs:
         run: |
           mkdir -p dist
           pandoc README.md \
-            --from=gfm \
+            -o output/SmartPatrol_UserManual.pdf \
             --pdf-engine=xelatex \
-            -V geometry:margin=1in \
-            --resource-path=. \
-            -o dist/SmartPatrol-User-Manual.pdf
+            --toc \
+            --number-sections \
+            --mainfont="Noto Sans CJK TC" \
+            --variable geometry:margin=2cm \
+            --variable tables=true \
+            --variable fontsize=10pt \
+            --wrap=preserve
+
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
