@@ -1,0 +1,38 @@
+name: Build Markdown PDF
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc and LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-xetex
+
+      - name: Build PDF from Markdown
+        run: |
+          mkdir -p dist
+          pandoc README.md \
+            --from=gfm \
+            --pdf-engine=xelatex \
+            -V geometry:margin=1in \
+            --resource-path=. \
+            -o dist/SmartPatrol-User-Manual.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smartpatrol-user-manual-pdf
+          path: dist/SmartPatrol-User-Manual.pdf
