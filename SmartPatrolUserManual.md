@@ -1,9 +1,3 @@
----
-title: SmartPatrol 使用者手冊
-author: Frank Lu
-date: 2026-01-02
----
-
 <!-- pagebreak -->
 
 # 簡介
