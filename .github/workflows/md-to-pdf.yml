@@ -2,8 +2,7 @@ name: Build Markdown PDF
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -16,25 +15,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc and LaTeX
+      - name: Install Pandoc, LaTeX, and CJK fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-xetex
+          sudo apt-get install -y \
+            pandoc \
+            texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-xetex \
+            fonts-noto-cjk
+
+      - name: Normalize image paths for Linux (.\image.png -> ./image.png)
+        run: |
+          # Create a temp markdown with normalized paths
+          python3 - <<'PY'
+          import re
+          src = open("README.md", "r", encoding="utf-8").read()
+          # Replace .\image-xx.png with ./image-xx.png (Markdown and HTML)
+          src = src.replace(".\\", "./")
+          open("README.pandoc.md", "w", encoding="utf-8").write(src)
+          PY
 
       - name: Build PDF from Markdown
         run: |
           mkdir -p dist
-          pandoc README.md \
-            -o output/SmartPatrol_UserManual.pdf \
+          pandoc README.pandoc.md \
+            -o dist/SmartPatrol-User-Manual.pdf \
+            --from gfm \
             --pdf-engine=xelatex \
+            --resource-path=. \
             --toc \
             --number-sections \
-            --mainfont="Noto Sans CJK TC" \
-            --variable geometry:margin=2cm \
-            --variable tables=true \
-            --variable fontsize=10pt \
+            -V mainfont="Noto Sans CJK TC" \
+            -V geometry:margin=2cm \
+            -V fontsize=10pt \
             --wrap=preserve
-
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
