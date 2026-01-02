@@ -23,15 +23,24 @@ jobs:
             texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-xetex \
             fonts-noto-cjk
 
-      - name: Normalize image paths for Linux (.\image.png -> ./image.png)
+      - name: Normalize image paths for Linux
         run: |
-          # Create a temp markdown with normalized paths
           python3 - <<'PY'
           import re
-          src = open("SmartPatrolUserManual.md", "r", encoding="utf-8").read()
-          # Replace .\image-xx.png with ./image-xx.png (Markdown and HTML)
-          src = src.replace(".\\", "./")
-          open("SmartPatrolUserManual.pandoc.md", "w", encoding="utf-8").write(src)
+          p = "SmartPatrolUserManual.md"
+          s = open(p, "r", encoding="utf-8").read()
+
+          # 1) Markdown image/link: ](.\xxx) or ](.\\xxx) -> ](./xxx)
+          s = re.sub(r'\]\(\s*\.\\\\', '](./', s)
+          s = re.sub(r'\]\(\s*\./\./', '](./', s)
+
+          # 2) HTML img: src=".\xxx" or src='.\\xxx' -> src="./xxx"
+          s = re.sub(r'src=(["\'])\.\\\\', r'src=\1./', s)
+
+          # 3) General: ".\image.png" standalone (last resort, but limited)
+          s = s.replace(".\\image", "./image")
+
+          open("SmartPatrolUserManual.pandoc.md", "w", encoding="utf-8").write(s)
           PY
 
       - name: Build PDF from Markdown
@@ -39,9 +48,10 @@ jobs:
           mkdir -p dist
           pandoc SmartPatrolUserManual.pandoc.md \
             -o dist/SmartPatrol-User-Manual.pdf \
-            --from gfm \
+            --from markdown+raw_tex+link_attributes+pipe_tables \
             --pdf-engine=xelatex \
-            --resource-path=. \
+            --resource-path=.:docs:docs/images:images \
+            --metadata-file=metadata.yaml \
             --toc \
             --number-sections \
             -V mainfont="Noto Sans CJK TC" \

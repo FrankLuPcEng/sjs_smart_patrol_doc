@@ -1,27 +1,31 @@
-# SmartPatrol 使用者手冊
+---
+title: SmartPatrol 使用者手冊
+author: Frank Lu
+date: 2026-01-02
+---
 
-<div style="break-after: page; page-break-after: always;"></div> 
+<!-- pagebreak -->
 
-## 1. 簡介 📘 
+# 簡介
 
 SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus TCP 的 WISE-S100 指示燈監控，以及 Cupola360 攝影機事件視角切換，並提供設備與使用者管理、API 觸發等功能。
 
-## 2. 系統需求 💻 
+# 系統需求
 
 - 作業系統：Windows 10/11
 - .NET 執行環境：.NET 8（專案已設定）
 - 網路需求：可連線 RabbitMQ／Modbus TCP 裝置／Cupola360 服務（依功能而定）
 
-## 3. 安裝與啟動 🚀 
+# 安裝與啟動
 
 - 下載執行檔後啟動 `SmartPatrol`
 - 第一次啟動先到 `CFX Configuration` 設定連線與佇列，再回 `Dashboard` 確認狀態
 
-<div style="break-after: page; page-break-after: always;"></div> 
+<!-- pagebreak -->
 
-## 4. 介面導覽 🧭 
+# 介面導覽
 
-![alt text](image.png)
+![alt text](images/image-root.png)
 
 | 編號 | 名稱 | 功能說明 |
 |---:|---|---|
@@ -32,28 +36,27 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 5 | Footer | `Settings`、`Login`、`Logout`、使用者資訊 |
 
 > **說明** <br> 
-> `使用者 👤` 可透過視窗左側的 `導覽列🧭` 進行登入登出、前往各功能頁面等操作。 <br>
+> `使用者` 可透過視窗左側的 `導覽列` 進行登入登出、前往各功能頁面等操作。 <br>
 
 ```
- ⚠️ 特定功能需要特定權限才能存取，未登入或權限不足時會受限。
+ 注意：特定功能需要特定權限才能存取，未登入或權限不足時會受限。
 ```
 ---
 
 <a id="discription1"></a>
-#### 4.1 Dashboard（儀表板）📊 
+## Dashboard（儀表板）
 
-<p align="center">
-  <img src="images/image-65.png" alt="drawing" width="560"/>
-</p>
+![drawing](images/image-65.png)
 
 > **說明** <br>
 > 
 > Dashboard (儀表板) 適用於顯示
 即時顯示系統總覽與各項服務狀態，包含設備數量、警告/錯誤統計，以及 CFX、Cupola360、WISE-S100 監控資訊。並提供系統訊息列表，方便快速掌握異常來源、時間與內容以利排除問題。
----
-##### 系統概覽(System Overview)
 
-![alt text](image-1.png)
+---
+### 系統概覽(System Overview)
+
+![alt text](images/image-1.png)
 
 | 編號 | 項目 | 說明 |
 |---:|---|---|
@@ -65,10 +68,10 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 >  **說明** <br>
 > 此區塊用於快速掌握整體系統健康狀態，當警告或錯誤數量異常時，應優先進行確認。
 ---
-##### 系統狀態(System Status)
+### 系統狀態(System Status)
 **CFX Service**
 
-  ![alt text](image-2.png)
+  ![alt text](images/image-2.png)
 
   | 編號 | 項目 | 說明 |
   |---:|------|------|
@@ -82,7 +85,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 ---
 **Cupola360**
 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 | 編號 | 項目 | 說明 |
 |---:|------|------|
@@ -96,7 +99,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 ---
 **WISE-S100 監控**
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
 | 編號 | 項目 | 說明 |
 |---:|------|------|
@@ -109,28 +112,26 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 ---
-##### 系統訊息
+### 系統訊息
 
 ![alt text](images/image-92.png)
 
 > **說明** <br>
 > 系統訊息區塊用於顯示系統運作時的各項訊息，如CFX消息、連線狀態改變等等。
 
-##### 參考操作
+### 參考操作
   - [啟動與驗證 CFX 連線](#operation1)
 
 ---
 
 <a id="discription2"></a>
-#### 4.2 Equipment Management（設備管理）🛠️ 
+### Equipment Management（設備管理）
 
-<p align="center">
-  <img src="images/image-66.png" alt="alt text" width="560" />
-</p>
+![alt text](images/image-66.png)
 
-##### 工具列
+### 工具列
 
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 | 編號 | 功能 | 功能說明 |
 |---:|------|----------|
@@ -149,11 +150,11 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | Export to Event Api |  匯出設備資料至事件 API |
 | Push to Cupola360 |  推送設備設定到 Cupola360 系統 |
 
-##### 設備列表
+### 設備列表
 
 顯示當前設定的設備列表
 
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 
 | 編號 | 功能 | 說明 |
 |---:|------|------|
@@ -163,11 +164,9 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 
-##### 詳情（選取設備後顯示）
+### 詳情（選取設備後顯示）
 
-<p align="center">
-  <img src="images/image-156.png" alt="alt text" width="560" />
-</p>
+![alt text](images/image-156.png)
 
 | 分頁名稱 | 功能說明 |
 |----------|----------|
@@ -177,11 +176,11 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 ---
 
-###### Basic 分頁 
+### Basic 分頁
 
 > 設備的基本資訊
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
 | 編號 | 項目 | 說明 |
 |---:|------|------|
@@ -191,14 +190,14 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 ---
 <a id="discription2.2"></a>
-###### Cupola360 分頁
+### Cupola360 分頁
 
 <a id="discription2.2.1"></a>
 **ROI Window**
 
 > 設定設備顯示在Cupola360的ROI基本資訊的頁面
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 | 編號 | 項目 | 說明 |
 |---:|------|------|
@@ -214,7 +213,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 > 新增/移除連結；列表含 `Name`、`URL`
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 | 編號 | 功能 | 功能說明 |
 |---:|------|----------|
@@ -227,7 +226,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 > 新增、刪除、修改 Sub ROI 的設定
 
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 
 | 編號 | 功能 | 功能說明 |
 |---:|------|------|
@@ -239,7 +238,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 > 設定異常發生時 Cupola360 巡檢系統的畫面要轉向的座標、大小、時間等參數
 
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 
 | 編號 | 項目 | 說明 |
 |---:|------|------|
@@ -252,14 +251,14 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 ---
 <a id="discription2.3"></a>
-###### Fault 分頁
+### Fault 分頁
 
 <a id="discription2.3.1"></a>
 **CFX**
 
 > 異常來源是CFX時的相關設定
 
-![alt text](image-14.png)
+![alt text](images/image-14-root.png)
 
 | 編號 | 功能 | 說明 |
 |---:|------|------|
@@ -271,7 +270,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 > 異常來源是 WISE-S100的相關設定
 
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 
 | 編號 | 功能 | 說明 |
 |---:|------|------|
@@ -286,7 +285,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 > 設定當異常觸發時要做動的API請求
 
-![alt text](image-16.png)
+![alt text](images/image-16-root.png)
 
 | 編號 | 功能 | 功能說明 |
 |---:|------|------|
@@ -295,7 +294,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 3 | API 列表 | 顯示目前設定的 API 清單，包含名稱、方法、網址及啟用狀態 |
 
 
-##### 參考操作  
+### 參考操作  
   - [設備新增與基本設定](#operation2)
   - [設定 ROI 與 Cupola360 警報視角](#operation3)
   - [新增 Hyperlink](#operation4)
@@ -306,14 +305,14 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
   - [匯入／匯出設定](#operation9)
 
 <a id="discription3"></a>
-#### 4.3 CFX 設定頁面 🔌 
-<p align="center">
-  <img src="images/image-67.png" alt="alt text" width="560" />
-</p>
 
-##### 工具列
+## CFX 設定頁面
 
-![alt text](image-13.png)
+![alt text](images/image-67.png)
+
+### 工具列
+
+![alt text](images/image-13.png)
 
 | 編號 | 功能 | 說明 |
 |---:|------|------|
@@ -326,9 +325,9 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 7 | 檢查設定 | 驗證 CFX 設定的正確性 |
 | 8 | 回覆為預設值 | 重置所有設定為系統預設值 |
 
-##### 設定與 CFX 連線參數說明：
+### 設定與 CFX 連線參數說明：
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
 | 編號 | 功能 | 說明 |
 |---:|----------|------|
@@ -339,9 +338,9 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 5 | Password | 對應使用者帳號的密碼認證 |
 | 6 | Auto Reconnect | 當連線中斷時是否自動重新連線的設定選項 |
 | 7 | Reconnect Interval | 自動重連的時間間隔，單位通常為秒 |
-##### 設定RabbitMQ的QUEUE
+### 設定RabbitMQ的QUEUE
 
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 
 | 編號 | 功能 | 說明 |
 |---:|------|------|
@@ -350,18 +349,18 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 3 | 刪除QUEUE | 移除選取的佇列項目 |
 | 4 | 當前佇列列表 | 顯示目前設定的RabbitMQ佇列清單，包含啟用狀態、名稱、佇列名稱及描述 |
 
-##### 參考操作
+### 參考操作
   - [啟動與驗證 CFX 連線](#operation1)
   - [匯入／匯出設定](#operation9)
 
-#### 4.4 使用者管理頁面 👥 
+### 使用者管理頁面
 
 > 使用者管理頁面提供完整的使用者帳戶管理功能，包含新增、編輯、刪除使用者以及權限控制。
 
-![alt text](image-18.png)
+![alt text](images/image-18-root.png)
 
 
-##### 工具列功能
+### 工具列功能
 | 編號 | 功能 | 說明 |
 |---:|------|------|
 | 1 | 新增使用者 | 新增使用者帳戶 |
@@ -370,17 +369,17 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 4 | 刪除使用者 | 刪除選取的使用者 |
 | 5 | 重新整理 | 重新整理使用者列表 |
 
-##### 參考操作
+### 參考操作
   - [使用者管理](#operation10) </br>
 
-<div style="break-after: page; page-break-after: always;"></div> 
+<!-- pagebreak -->
 
-## 5. 常用操作 📎 
+# 常用操作
 
-> ⚠️ **注意**：取得權限前僅限觀看 Dashboard，請點擊左下角 ![登入按鈕](images/image-14.png) 登入後操作 
+> **注意**：取得權限前僅限觀看 Dashboard，請點擊左下角 ![登入按鈕](images/image-14.png) 登入後操作
 
 <a id="operation1"></a>
-### 5.1 啟動與驗證 CFX 連線 [↩](#discription3) 
+## 啟動與驗證 CFX 連線 [↩](#discription3) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -396,7 +395,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 5.2 | ![Message Count](images/image-24.png) | 訊息數持續累計 |
 
 <a id="operation2"></a>
-### 5.2 設備新增與基本設定 [↩](#discription2) 
+## 設備新增與基本設定 [↩](#discription2) 
 ![設備清單](images/image-27.png)
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -409,7 +408,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 4 | 確認設備已新增 | 在清單中確認新設備已出現且可啟用/停用 |
 
 <a id="operation3"></a>
-### 5.3 設定 ROI 與 Cupola360 警報視角 [↩](#discription2.2) 
+## 設定 ROI 與 Cupola360 警報視角 [↩](#discription2.2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -431,7 +430,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 <a id="tip1"></a>
 
-#### 如何獲取攝影機的RTSP 
+### 如何獲取攝影機的RTSP 
 
 | 步驟 | 說明 |
 |------|------|
@@ -442,7 +441,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation4"></a>
-### 5.4 新增 Hyperlink [↩](#discription2.2.2) 
+## 新增 Hyperlink [↩](#discription2.2.2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -459,7 +458,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation5"></a>
-### 5.5 新增 Sub ROI [↩](#discription2.2.3) 
+## 新增 Sub ROI [↩](#discription2.2.3) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -471,10 +470,8 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 3.2 | 檢查巡檢畫面 | ![ROI with Sub ROI](images/image-50.png) |
 
 <a id="tip5.5.1"></a>
-#### Sub ROI 新建視窗的說明 
-<p align="center">
-  <img src="images/image-44.png" alt="Sub ROI Dialog" width="560" />
-</p>
+## Sub ROI 新建視窗的說明 
+![Sub ROI Dialog](images/image-44.png)
 
 | 項目 | 說明 | 範例/補充 |
 |------|------|----------|
@@ -495,7 +492,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation6"></a>
-### 5.6 儲存與推送設定 [↩](#discription2) 
+## 儲存與推送設定 [↩](#discription2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -507,7 +504,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation7"></a>
-### 5.7 設定 WISE-S100 指示燈通道 [↩](#discription2.3.2) 
+## 設定 WISE-S100 指示燈通道 [↩](#discription2.3.2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -518,20 +515,20 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 3 | 儲存並驗證 | 點擊 `Save` 後回 `Dashboard` 檢查 WISE-S100 狀態與各設備的通道 Chips 顯示 |
 
 <a id="tip5.5.1"></a>
-#### 取得並填入通道設定 
+### 取得並填入通道設定 
 
 > 透過工具取得Wise-S100通道與燈號的對應關係後填入設定
 
 ![WISE-S100 設定](images/image-55.png)
 
-| 步驟 | 操作說明 |圖示|
-|------|----------|--|
-| 1 | 確認將 WISE-S100 正確的安裝到三色燈上 | ![alt text](images/image-174.png) |
-| 2 | 燈號變化時使用 `open modscan` 等工具讀取 40017 ~ 40024| ![alt text](images/image-176.png) |
-| 3 | 將結果以逗號為分隔填入對應欄位 (例如：1,2,3) | ![alt text](images/image-177.png) |
+| 步驟 | 操作說明 |
+|---|---|
+| 1 | 確認將 WISE-S100 正確的安裝到三色燈上 |
+| 2 | 燈號變化時使用 `open modscan` 等工具讀取 40017 ~ 40024 |
+| 3 | 將結果以逗號為分隔填入對應欄位 (例如：1,2,3) |
 
 <a id="operation8"></a>
-### 5.8 故障觸發 API 設定與測試 [↩](#discription2.3) 
+## 故障觸發 API 設定與測試 [↩](#discription2.3) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -545,9 +542,9 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation9"></a>
-### 5.9 匯入／匯出設定 
+## 匯入／匯出設定 
 
-#### 設備管理匯出設定 [↩](#discription2) 
+### 設備管理匯出設定 [↩](#discription2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -555,7 +552,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 2 | ![More](images/image-51.png) | 點擊更多選項按鈕 |
 | 3 | ![Export](images/image-57.png) | 匯出目前設備設定為檔案 |
 
-#### 設備管理匯入設定 [↩](#discription2) 
+### 設備管理匯入設定 [↩](#discription2) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -563,14 +560,14 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 2 | ![More](images/image-51.png) | 點擊更多選項按鈕 |
 | 3 | ![Import](images/image-58.png) | 匯入設備設定檔案 |
 
-#### CFX 設定匯出 [↩](#discription3) 
+### CFX 設定匯出 [↩](#discription3) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
 | 1 | ![CFX Configuration](images/image-16.png) | 進入 CFX 設定頁面 |
 | 2 | ![Export](images/image-60.png) | 匯出目前 CFX 設定為檔案 |
 
-#### CFX 設定匯入 [↩](#discription3) 
+### CFX 設定匯入 [↩](#discription3) 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -579,8 +576,8 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 
 
 <a id="operation10"></a>
-### 5.10 使用者管理 [↩](#discription4) 
-#### 新增使用者 
+## 使用者管理 [↩](#discription4) 
+### 新增使用者 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -589,7 +586,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 3 | ![使用者管理介面](images/image-63.png) | 填入使用者名稱、設定登入密碼、選擇使用者權限等級 |
 | 4 | ![alt text](images/image-159.png) | 完成創建動作 |
 
-#### 修改使用者資料 
+### 修改使用者資料 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -599,7 +596,7 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 4 | ![alt text](images/image-161.png) | 更新使用者名稱、調整權限設定、修改其他相關資訊 |
 | 5 | ![alt text](images/image-162.png) | 完成修改動作 |
 
-#### 修改使用者密碼 
+### 修改使用者密碼 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -609,14 +606,14 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 4 | ![alt text](images/image-164.png) | 輸入新密碼、確認新密碼 |
 | 5 | ![alt text](images/image-165.png) | 完成修改動作 |
 
-#### 刷新使用者列表 
+### 刷新使用者列表 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
 | 1 | ![User Management](images/image-61.png) | 進入使用者管理頁面 |
 | 2 | 點擊重新整理按鈕 | 更新列表資料，重新載入最新的使用者清單 |
 
-#### 刪除使用者 
+### 刪除使用者 
 
 | 步驟 | 操作 | 說明 |
 |------|------|------|
@@ -627,29 +624,29 @@ SmartPatrol 是一套巡檢與設備監控工具，整合 CFX/RabbitMQ、Modbus 
 | 5 | 在確認對話框中確認刪除動作 | 最終確認移除使用者帳戶 |
 
 
-## 6. 疑難排解 
+# 疑難排解 
 
-### CFX 無法連線 
+## CFX 無法連線 
 - 檢查 `Endpoint URL`、帳密、網路、防火牆
 - 使用 `Validate` 驗證設定
 - 必要時使用 `Reset to Default` 重置
 
-### 指示燈不更新 
+## 指示燈不更新 
 - 檢查 `Modbus IP/Port` 是否正確
 - 確認通道設定從 1 起算
 - 確認使用逗號分隔格式
 
-### Cupola360 視角無法切換 
+## Cupola360 視角無法切換 
 - 確認 RTSP URL 正確
 - 確認服務可用
 - 使用測試按鈕驗證
 - 必要時送出結束事件
 
-### 設定未生效 
+## 設定未生效 
 - 確認是否已按下 `Save`
 - 涉及 CFX 時需要 `Restart CFX`
 
-## 7. 安全與權限 
+# 安全與權限 
 
 - 僅授權使用者可進行使用者管理與敏感設定
 - 佇列、API 或通訊設定變更前，請先備份並通知相關人員
