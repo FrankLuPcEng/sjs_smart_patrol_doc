@@ -48,7 +48,7 @@ jobs:
           mkdir -p dist
           pandoc SmartPatrolUserManual.pandoc.md \
             -o dist/SmartPatrol-User-Manual.pdf \
-            --from markdown+raw_tex+link_attributes+pipe_tables \
+            --from markdown-yaml_metadata_block+raw_tex+link_attributes+pipe_tables \
             --pdf-engine=xelatex \
             --resource-path=.:docs:docs/images:images \
             --metadata-file=metadata.yaml \
