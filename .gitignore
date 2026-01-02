@@ -1,0 +1,31 @@
+# OS / system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Temp / backups
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+*.orig
+
+# Logs
+*.log
+
+# Markdown tooling / notes
+.crossnote/
+.obsidian/
+
+# Common build outputs (in case exports are generated)
+dist/
+build/
+out/
+.cache/
