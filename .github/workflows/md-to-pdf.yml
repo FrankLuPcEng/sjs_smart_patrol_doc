@@ -28,16 +28,16 @@ jobs:
           # Create a temp markdown with normalized paths
           python3 - <<'PY'
           import re
-          src = open("SmartPatrolUserManual.md", "r", encoding="utf-8").read()
+          src = open("README.md", "r", encoding="utf-8").read()
           # Replace .\image-xx.png with ./image-xx.png (Markdown and HTML)
           src = src.replace(".\\", "./")
-          open("SmartPatrolUserManual.pandoc.md", "w", encoding="utf-8").write(src)
+          open("README.pandoc.md", "w", encoding="utf-8").write(src)
           PY
 
       - name: Build PDF from Markdown
         run: |
           mkdir -p dist
-          pandoc SmartPatrolUserManual.pandoc.md \
+          pandoc README.pandoc.md \
             -o dist/SmartPatrol-User-Manual.pdf \
             --from gfm \
             --pdf-engine=xelatex \
